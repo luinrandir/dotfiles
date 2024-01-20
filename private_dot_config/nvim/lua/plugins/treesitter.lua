@@ -4,7 +4,7 @@ return {
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 		configs.setup({
-			ensure_installed = {"javascript", "typescript", "html", "css", "scss", "bash", "toml", "lua"},
+			ensure_installed = { "javascript", "typescript", "html", "css", "scss", "bash", "toml", "lua" },
 			sync_install = false,
 			auto_install = true,
 			highlight = {
@@ -12,5 +12,5 @@ return {
 				additional_vim_regex_highlighting = false,
 			},
 		})
-	end
+	end,
 }

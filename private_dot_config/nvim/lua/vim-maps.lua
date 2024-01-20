@@ -1,5 +1,4 @@
 --The Primeagen's inipired/copied commands
-    
 vim.g.mapleader = " "
 
 --Move highlighted lines
@@ -14,9 +13,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 --No Q
 vim.keymap.set("n", "Q", "<nop>")
-
---Format Stuff
-vim.keymap.set("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>")
 
 -- Regex Stuff
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
