@@ -10,7 +10,6 @@ return {
 				null_ls.builtins.formatting.shfmt,
 				null_ls.builtins.diagnostics.shellcheck,
 				null_ls.builtins.diagnostics.stylelint,
-                null_ls.builtins.diagnostics.htmlhint,
 			},
 		})
 
