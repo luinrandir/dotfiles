@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 
 --Move highlighted lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 --Keep cursor in middle while jumping and searching
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
