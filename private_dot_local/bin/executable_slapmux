@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#
+# Following The Primeagen's tmux-sessionizer to create blazingly fast tmux
+# sessions. Re-writing to learn what was going on in the script.
+#
+
+# Checking if the script has an argument, otherwise hit them with a find piped
+# to fzf
+if [[ $# -eq 1 ]]; then
+  selected="$1"
+else
+  selected=$(find ~/ ~/odin ~/learning ~/personal ~/frontend-mentor ~/school/cecs328 ~/school/cs20b -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+# -z returns true if string is empty
+if [[ -z $selected ]]; then
+  exit 0
+fi
+
+# Clean up the name to grab the base name of the project and change any . to _
+selected_name=$(basename "$selected" | tr . _)
+
+# The tmux magic
+# Check if we got tmux already running
+tmux_running=$(pgrep tmux)
+
+# If tmux is not running at all then create a new session with selected_name
+# using the flags for new-session: -s for session-name and -c start-directory
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+  tmux new-session -s "$selected_name" -c "$selected"
+  exit 0
+fi
+
+# If tmux is running, check if the session already exists by using has-session
+# and -t for the target name to check. We then send the output to /dev/null
+# since we do not need to read it.
+if tmux has-session -t="$selected_name" 2>/dev/null; then
+  tmux attach-session -t="$selected_name"
+  exit 0
+fi
+
+# If the result comes back as false, meaning tmux is running but the session
+# does not exist, then we create a new session. Same as before, but using the
+# -d flag to detach and create separate session
+if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+  tmux new-session -ds "$selected_name" -c "$selected"
+fi
+
+# Finally, after all is said and done, switch to the tmux session
+tmux switch-client -t "$selected_name"
