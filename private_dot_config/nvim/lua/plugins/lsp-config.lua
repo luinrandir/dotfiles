@@ -14,16 +14,6 @@ return {
         },
       },
     },
-    opts = {
-      servers = {
-        jdtls = {},
-      },
-      setup = {
-        jdtls = function()
-          return true
-        end,
-      }
-    },
     config = function()
       vim.diagnostic.config({
         virtual_lines = true,
