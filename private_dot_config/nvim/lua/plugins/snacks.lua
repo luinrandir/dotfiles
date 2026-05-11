@@ -16,6 +16,7 @@ return {
       enabled = true,
       sources = {
         explorer = {
+          hidden = true,
           -- auto_close = true,
         }
       }

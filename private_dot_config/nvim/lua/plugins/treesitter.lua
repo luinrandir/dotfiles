@@ -1,18 +1,15 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-  branch = 'master',
+  "nvim-treesitter/nvim-treesitter",
+  branch = 'main',
   lazy = false,
-	build = ":TSUpdate",
-	config = function()
-		local configs = require("nvim-treesitter.configs")
-		configs.setup({
-			ensure_installed = { "javascript", "typescript", "html", "css", "scss", "bash", "toml", "lua" },
-			sync_install = false,
-			auto_install = true,
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-			},
-		})
-	end,
+  build = ":TSUpdate",
+  config = function()
+    require("nvim-treesitter.config").setup({
+      auto_install = true,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+    })
+  end,
 }
