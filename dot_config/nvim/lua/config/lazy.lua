@@ -15,6 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -23,22 +24,13 @@ vim.g.maplocalleader = "\\"
 
 --Lazy specific keymap
 vim.keymap.set("n","<leader>z", ":Lazy<CR>", {desc="Open Lazy menu"})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "snacks_picker_input", "snacks_picker", "snacks_layout" },
-  callback = function()
-    vim.schedule(function()
-      if vim.api.nvim_buf_is_valid(0) then
-        pcall(vim.treesitter.stop)
-      end
-    end)
-  end,
-})
 
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "plugins" },
+    { import = "plugins.lsp"},
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
