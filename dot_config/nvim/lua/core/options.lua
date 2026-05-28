@@ -7,7 +7,7 @@ vim.opt.wrap = false
 
 --Set our tab spacing and ensure the tab button works correctly in INSERT mode.
 --Set custom variable for easier adjustment.
-tab_length = 2
+local tab_length = 2
 vim.opt.tabstop = tab_length
 vim.opt.softtabstop = tab_length
 vim.opt.shiftwidth = tab_length
