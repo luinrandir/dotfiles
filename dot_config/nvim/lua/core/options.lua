@@ -1,5 +1,8 @@
 --Neovim Options
 
+--Set borders
+vim.o.winborder = "rounded"
+
 --Set number line on side, relative numbers for ease of travel,and prevent text wrapping.
 vim.opt.nu = true
 vim.opt.relativenumber = true

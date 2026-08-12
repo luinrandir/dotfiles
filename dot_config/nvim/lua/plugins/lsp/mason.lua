@@ -18,6 +18,7 @@ return {
 							package_pending = "➜",
 							package_uninstalled = "✗",
 						},
+						border = "rounded",
 					},
 				},
 			},
@@ -32,14 +33,53 @@ return {
 								-- See the configuration section for more details
 								-- Load luvit types when the `vim.uv` word is found
 								{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+								{ path = "snacks.nvim", words = { "Snacks" } },
+								{ path = "lazy.nvim", words = { "LazyVim" } },
 							},
 						},
 					},
 				},
 				config = function()
+					vim.filetype.add({
+						extension = {
+							cpp = "cpp.doxygen",
+							c = "c.doxygen",
+							cppm = "cpp",
+							gotmpl = "gotmpl",
+							mdx = "markdown.mdx",
+						},
+					})
+					vim.lsp.config("clangd", {
+						cmd = {
+							"clangd",
+							"--background-index",
+							"--clang-tidy",
+							"--header-insertion=iwyu",
+							"--completion-style=detailed",
+							"--function-arg-placeholders",
+							"--fallback-style=llvm",
+						},
+						init_options = {
+							usePlaceholders = true,
+							completeUnimported = true,
+							clangdFileStatus = true,
+						},
+					})
+					vim.lsp.config("lua_ls", {
+						settings = {
+							Lua = {
+								runtime = {
+									pathStrict = false,
+								},
+							},
+						},
+					})
 					vim.diagnostic.config({
 						virtual_lines = true,
 						underline = true,
+						float = {
+							border = "rounded",
+						},
 					})
 				end,
 			},
