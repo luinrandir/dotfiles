@@ -16,7 +16,7 @@ return {
 				css = { "stylelint" },
 				scss = { "stylelint" },
 				html = { "prettier" },
-				json = { "prettier" },
+				json = { "jq", "prettier" },
 				yaml = { "prettier" },
 				toml = { "prettier" },
 				markdown = { "prettier" },

@@ -39,11 +39,23 @@ return {
 						},
 					},
 				},
+				opts = {
+					servers = {
+						jsonls = {
+							settings = {
+								json = {
+									schemas = require("schemastore").json.schemas(),
+									validate = { enable = true },
+								},
+							},
+						},
+					},
+				},
 				config = function()
 					vim.filetype.add({
 						extension = {
-							cpp = "cpp.doxygen",
-							c = "c.doxygen",
+							["cpp.doxygen"] = "cpp",
+							["c.doxygen"] = "c",
 							cppm = "cpp",
 							gotmpl = "gotmpl",
 							mdx = "markdown.mdx",
@@ -58,6 +70,7 @@ return {
 							"--completion-style=detailed",
 							"--function-arg-placeholders",
 							"--fallback-style=llvm",
+							"--query-driver=/usr/bin/g++,/usr/bin/clang++",
 						},
 						init_options = {
 							usePlaceholders = true,

@@ -24,7 +24,14 @@ return {
 				},
 			},
 
-			signature = { enabled = true },
+			signature = {
+				enabled = true,
+				trigger = {
+					enabled = true,
+					show_on_trigger_character = true,
+					show_on_insert_on_trigger_character = true,
+				},
+			},
 
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
