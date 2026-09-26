@@ -51,9 +51,9 @@ vim.opt.isfname:append("@-@")
 --Set our update time to 50ms.
 vim.opt.updatetime = 50
 
---Turn on spell check.
-vim.opt.spell = true
-vim.opt.spelllang = { "en_us" }
+--Turn on spell check if not using harper-ls.
+-- vim.opt.spell = true
+-- vim.opt.spelllang = { "en_us" }
 
 --Set Folds
 vim.opt.foldmethod = "expr"

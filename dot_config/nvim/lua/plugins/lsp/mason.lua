@@ -87,6 +87,20 @@ return {
 							},
 						},
 					})
+					vim.lsp.config("harper", {
+						cmd = { "harper-ls", "--stdio" },
+						filetypes = { "markdown", "text", "tex", "typst" },
+						settings = {
+							["harper-ls"] = {
+								dialect = "American",
+								linters = {
+									SpellCheck = true,
+									SentenceCapitalization = true,
+									LongSentances = true,
+								},
+							},
+						},
+					})
 					vim.diagnostic.config({
 						virtual_lines = true,
 						underline = true,
