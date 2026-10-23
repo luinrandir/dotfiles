@@ -19,7 +19,7 @@ return {
 				json = { "jq", "prettier" },
 				yaml = { "prettier" },
 				toml = { "prettier" },
-				markdown = { "prettier" },
+				markdown = { "prettier", "injected" },
 				lua = { "stylua" },
 				go = { "gofumpt", "goimports-reviser", "golines" },
 				python = { "isort", "black" },
@@ -40,5 +40,12 @@ return {
 				timeout_ms = 1000,
 			})
 		end, { desc = "Format file on normal mode, format range in visual mode." })
+
+		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+			conform.format({
+				lsp_fallback = true,
+				asyn = true,
+			})
+		end, { desc = "Format Markdown and code blocks" })
 	end,
 }

@@ -72,6 +72,37 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+vim.api.nvim_create_augroup("FileType", {
+	pattern = { "c", "cpp" },
+	callback = function(ev)
+		local opts = { buffer = ev.buf, silent = true }
+
+		--Generate CMake Build
+		opts.desc = "Generate CMake Build"
+		vim.keymap.set("n", "<leader>cg", ":CMakeGenerate<CR>", opts)
+
+		--Select kit for CMake
+		opts.desc = "Choose compiler toolchain for CMake"
+		vim.keymap.set("n", "<leader>ck", ":CMakeSelectKit<CR>", opts)
+
+		--Select CMake build type
+		opts.desc = "Select CMake build type"
+		vim.keymap.set("n", "<leader>ct", ":CMakeSelectBuildType<CR>", opts)
+
+		--CMake build to compile
+		opts.desc = "Compile with CMake"
+		vim.keymap.set("n", "<leader>cb", ":CMakeBuild<CR>", opts)
+
+		--CMake run to execute binary
+		opts.desc = "Run binary with CMake"
+		vim.keymap.set("n", "<leader>cr", ":CMakeRun<CR>", opts)
+
+		--Debug with CMake
+		opts.desc = "Debug with CMake"
+		vim.keymap.set("n", "<leader>cd", ":CMakeDebug<CR>", opts)
+	end,
+})
+
 local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
